@@ -108,7 +108,7 @@ const Projects = () => {
 
         <div className="space-y-8">
           {projects.map((project, index) => (
-            <ProjectCard key={index} project={project} index={index} />
+            <ProjectCard key={index} project={project} />
           ))}
         </div>
       </div>
