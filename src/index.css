@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #ee1c27;
+  --color-dark: #0a0a0a;
+  --color-offwhite: #f5f5f5;
+  
+  --font-family-montserrat: Montserrat, sans-serif;
+  --font-family-source: 'Source Sans Pro', sans-serif;
+  --font-family-rajdhani: Rajdhani, sans-serif;
+}
+
+@layer base {
+  * {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply m-0 antialiased;
+  }
+}
+
+@layer utilities {
+  .glassmorphism {
+    @apply bg-white/10 backdrop-blur-lg border border-white/20;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-red-400 bg-clip-text text-transparent;
+  }
+}
