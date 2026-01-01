@@ -20,7 +20,7 @@ function App() {
         <section id="projects">
           <Projects />
         </section>
-        <section id="partners">
+        <section id="societies">
           <Partners />
         </section>
         <section id="contact">

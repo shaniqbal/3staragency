@@ -2,9 +2,52 @@ import { motion } from 'framer-motion';
 import MagneticButton from './MagneticButton';
 
 const Hero = () => {
+  // Stagger animation for text
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3
+      }
+    }
+  };
+
+  const letterVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5 }
+    }
+  };
+
+  const title = "Name that you can trust";
+  const words = title.split(" ");
+
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-dark overflow-hidden">
-      {/* Animated background elements */}
+      {/* Ken Burns Effect Background */}
+      <motion.div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&h=1080&fit=crop')",
+        }}
+        initial={{ scale: 1 }}
+        animate={{ scale: 1.1 }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          repeatType: "reverse",
+          ease: "linear"
+        }}
+      />
+      
+      {/* Dark Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-dark/80 via-dark/60 to-dark"></div>
+
+      {/* Animated background orbs */}
       <motion.div
         className="absolute inset-0 opacity-20"
         initial={{ opacity: 0 }}
@@ -17,16 +60,15 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
+        {/* Main Title with Kinetic Typography */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="mb-6"
         >
           <motion.h1 
-            className="text-6xl md:text-8xl lg:text-9xl font-montserrat font-black mb-6 text-white"
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            className="text-6xl md:text-8xl lg:text-9xl font-montserrat font-black mb-6 text-white leading-tight"
           >
             3 <span className="text-gradient">Star</span>
             <br />
@@ -34,28 +76,49 @@ const Hero = () => {
           </motion.h1>
         </motion.div>
 
+        {/* Tagline with stagger effect */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="flex flex-wrap justify-center gap-3 mb-12"
+        >
+          {words.map((word, index) => (
+            <motion.span
+              key={index}
+              variants={letterVariants}
+              className="text-2xl md:text-4xl lg:text-5xl font-source text-white font-light"
+            >
+              {word}
+            </motion.span>
+          ))}
+        </motion.div>
+
+        {/* Subtitle */}
         <motion.p
-          className="text-xl md:text-2xl font-source text-gray-300 mb-12 max-w-3xl mx-auto"
+          className="text-lg md:text-xl font-source text-gray-300 mb-12 max-w-3xl mx-auto"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
+          transition={{ duration: 0.8, delay: 1.5 }}
         >
-          Crafting Neo-Luxury Digital Experiences with Cutting-Edge Technology
+          Your trusted partner in real estate excellence. From luxury homes to prime investments,
+          we deliver unparalleled service across Lahore&apos;s finest developments.
         </motion.p>
 
+        {/* CTA Buttons with Magnetic Effect */}
         <motion.div
           className="flex flex-col sm:flex-row gap-6 justify-center items-center"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
+          transition={{ duration: 0.8, delay: 1.8 }}
         >
           <MagneticButton>
-            Get Started
+            Explore Properties
           </MagneticButton>
           <motion.a
             href="#contact"
-            className="px-8 py-4 glassmorphism text-white font-montserrat font-semibold rounded-full hover:bg-white/20 transition-all"
-            whileHover={{ scale: 1.05 }}
+            className="px-8 py-4 glassmorphism text-white font-montserrat font-semibold rounded-full hover:bg-white/20 transition-all border border-white/20"
+            whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(255, 255, 255, 0.2)' }}
             whileTap={{ scale: 0.95 }}
           >
             Contact Us
