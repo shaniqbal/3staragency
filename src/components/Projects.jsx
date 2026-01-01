@@ -28,7 +28,7 @@ const projects = [
   }
 ];
 
-const ProjectCard = ({ project, index }) => {
+const ProjectCard = ({ project }) => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
